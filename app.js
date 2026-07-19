@@ -2,6 +2,7 @@ const express = require("express");
 
 const app = express();
 
+app.use(express.json());
 let tasks = [
     {
         id: 1,
@@ -51,6 +52,30 @@ app.get("/tasks/:id", (req, res) => {
     }
 
     res.json(task);
+});
+
+app.post("/tasks", (req, res) => {
+    const { title } = req.body;
+
+    // Validate input
+    if (!title || title.trim() === "") {
+        return res.status(400).json({
+            error: "Title is required"
+        });
+    }
+
+    // Generate next ID
+    const newTask = {
+        id: tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1,
+        title: title.trim(),
+        done: false
+    };
+
+    // Add to the in-memory array
+    tasks.push(newTask);
+
+    // Return the created task
+    res.status(201).json(newTask);
 });
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
