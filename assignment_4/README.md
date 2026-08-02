@@ -1,6 +1,7 @@
 # 🔐 Auth Login Protect API
 
 A secure REST API built with **Node.js**, **Express.js**, and **Supabase Authentication**.
+![Swagger Screenshot](https://raw.githubusercontent.com/Dare-TechieZ/Flyrank-AI-internship-work/main/assignment_4/assignment4.png)
 
 ## Features
 
